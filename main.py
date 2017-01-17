@@ -1,6 +1,6 @@
 import requests
 
-token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNjkxNiJ9.Iijdoo8oORm7r3VOvFhaWYHhbDilS9GoZ05gtsLjtxQ"
+token = ""
 
 headers = {
     "Authorization": "Bearer %s" % token,
