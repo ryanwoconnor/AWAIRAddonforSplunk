@@ -1,20 +1,17 @@
 import requests
 import datetime
-
 #Get current Time Minus 15 Minutes
 time=datetime.datetime.now() - datetime.timedelta(minutes=15)
 time=time.strftime('%Y-%m-%dT%H:%M:%S%Z')
-
-
-token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNjkxNiJ9.Iijdoo8oORm7r3VOvFhaWYHhbDilS9GoZ05gtsLjtxQ"
-
+token = ""
+print time
 headers = {
     "Authorization": "Bearer %s" % token,
 }
 
 #Make a request to get the most recent 15-min avg from AWAIR
 info = requests.get('https://beta-api.awair.is/v1/users/self/devices', headers=headers, stream=True)
-response = requests.get('https://beta-api.awair.is/v1/devices/10823/events/15min-avg?limit=1&from='+str(time), headers=headers, stream=True)
+response = requests.get('https://beta-api.awair.is/v1/devices/10823/events/15min-avg?limit=1&from='+str(time), headers=headers)
 
 events = response.json()
 device = info.json()
@@ -40,7 +37,7 @@ def get15minData(access_token):
         #print("Timestamp: " + str(timestamp))
         #print("Score: " + str(score))
         #print("Sensor Data")
-        print(str(timestamp) + " " + "score=" + str(score) + " " + "CO2=" + str(sensor["co2"]) + " " + "dust=" + str(sensor["dust"]) + " " + "temperature=" + str(sensor["temp"]) + " "  + "humidity="  + str(sensor["humid"]) + " " + "VOC=" + str(sensor["voc"]))
+        print(str(timestamp)[:-5] + " " + "score=" + str(score) + " " + "CO2=" + str(sensor["co2"]) + " " + "dust=" + str(sensor["dust"]) + " " + "temperature=" + str(sensor["temp"]) + " "  + "humidity="  + str(sensor["humid"]) + " " + "VOC=" + str(sensor["voc"]))
         #index = (data["index"])
         #print("Index Data")
         #print("CO2=" + str(index["co2"]) + " " + "dust=" + str(index["dust"]) + " " + "temperature=" + str(index["temp"]) + " " + "humidity=" + str(index["humid"]) + " " + "VOC=" + str(index["voc"]) + "\n")
