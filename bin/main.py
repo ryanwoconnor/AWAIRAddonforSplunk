@@ -1,10 +1,14 @@
 import requests
 import datetime
+
 #Get current Time Minus 15 Minutes
 time=datetime.datetime.now() - datetime.timedelta(minutes=15)
 time=time.strftime('%Y-%m-%dT%H:%M:%S%Z')
+
+#Your AWAIR Token
 token = ""
-print time
+
+
 headers = {
     "Authorization": "Bearer %s" % token,
 }
